@@ -340,6 +340,7 @@ void Humiture_ISR()
     oled.printf("Humidity:\n%.2f%%\n", dht.readHumidity());
     oled.printf("Temp:\n%.2fC", dht.readTemperature());
     oled.display();
+    Serial.printf("Humidity:%.2f%%,Temp:%.2fC\n", dht.readHumidity(), dht.readTemperature());
     btnTrue();
 }
 static void Detect_Humiture()
@@ -392,6 +393,7 @@ void VOL_Voltage_ISR()
     oled.printf("VIN:%.2fV", (peakDifference < 29) ? 0 : (peakDifference * 3.3) / 1024);
     oled.display();
     analogWrite(Red, (peakDifference < 29) ? 0 : peakDifference / 5);
+    Serial.printf("Peak:%d\n", peakDifference);
     btnTrue();
 }
 static void Detect_VOL_Voltage()
